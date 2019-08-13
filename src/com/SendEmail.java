@@ -10,12 +10,11 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
 import com.sun.mail.util.MailSSLSocketFactory;
 
-public class SendEmail
-{
-    public static void main(String [] args) throws GeneralSecurityException
-    {
+public class SendEmail {
+    public static void main(String[] args) throws GeneralSecurityException {
         // 收件人电子邮箱
         String to = "1021501992@qq.com";
 
@@ -37,14 +36,13 @@ public class SendEmail
         properties.put("mail.smtp.ssl.enable", "true");
         properties.put("mail.smtp.ssl.socketFactory", sf);
         // 获取默认session对象
-        Session session = Session.getDefaultInstance(properties,new Authenticator(){
-            public PasswordAuthentication getPasswordAuthentication()
-            {
+        Session session = Session.getDefaultInstance(properties, new Authenticator() {
+            public PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication("41241622@qq.com", "biecjbwaydfgbhci"); //发件人邮件用户名、密码
             }
         });
 
-        try{
+        try {
             // 创建默认的 MimeMessage 对象
             MimeMessage message = new MimeMessage(session);
 
@@ -63,7 +61,7 @@ public class SendEmail
             // 发送消息
             Transport.send(message);
             System.out.println("Sent message successfully....from runoob.com");
-        }catch (MessagingException mex) {
+        } catch (MessagingException mex) {
             mex.printStackTrace();
         }
     }
