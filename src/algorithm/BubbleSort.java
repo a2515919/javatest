@@ -1,6 +1,6 @@
 package algorithm;
 import algorithm.InsertSort.*;
-
+import algorithm.ShellSort.*;
 public class BubbleSort {
 
     /**
@@ -40,7 +40,6 @@ public class BubbleSort {
         {
             flag=0;
             for (int j = n; j >i ; j--) {
-
                 if (a[j]<a[j-1]){
                  temp=a[j];
                  a[j]=a[j-1];
@@ -52,9 +51,6 @@ public class BubbleSort {
             if(flag==0)
                 break;
         }
-
-
-
     }
 
     public static void main(String[] args) {
@@ -63,10 +59,14 @@ public class BubbleSort {
         int[] c={1,2,3,4,5,6,8,9,7,3};
         //bubbleSorts(a,10);
         //optBubbleSort(c,10);
-        InsertSort is=new InsertSort();
-        is.insertSort(c,10);
-        for (int i:c
-             ) {
+        //InsertSort is=new InsertSort();
+        //ss.insertSort(c,10);
+       // ShellSort ss=new ShellSort();
+       // ss.shellSort1(b,10);
+        //MergeSort.sort(b,0,9);
+       // RealMergeSort.sort(b,0,9);
+        QuickSort.quick_sort(b,0,9);
+        for (int i:b) {
             System.out.println(i);
         }
     }
