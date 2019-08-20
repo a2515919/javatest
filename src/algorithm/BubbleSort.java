@@ -1,6 +1,8 @@
 package algorithm;
 import algorithm.InsertSort.*;
 import algorithm.ShellSort.*;
+import searchAlgorithm.BinarySearch;
+
 public class BubbleSort {
 
     /**
@@ -57,6 +59,12 @@ public class BubbleSort {
         int[] a={1,5,2,6,6,8,7,5,3,4};
         int[] b={5,6,3,6,2,1,58,98,9,9};
         int[] c={1,2,3,4,5,6,8,9,7,3};
+        int[] d={1,2,3,4,5,6,7,8,9,10};
+        HeapSort.heap_sort(c,10);
+
+       // System.out.println(BinarySearch.binarySearch(d, 4,0,9));
+
+      //  System.out.println(BinarySearch.binarySearch_n(d, 11));
         //bubbleSorts(a,10);
         //optBubbleSort(c,10);
         //InsertSort is=new InsertSort();
@@ -65,8 +73,8 @@ public class BubbleSort {
        // ss.shellSort1(b,10);
         //MergeSort.sort(b,0,9);
        // RealMergeSort.sort(b,0,9);
-        QuickSort.quick_sort(b,0,9);
-        for (int i:b) {
+      //  QuickSort.quick_sort(b,0,9);
+        for (int i:c) {
             System.out.println(i);
         }
     }
