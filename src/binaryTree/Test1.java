@@ -7,6 +7,7 @@ import java.util.Queue;
  * 二叉树的前中后遍历，包含递归和非递归两种方法
  */
 public class Test1 {
+    //我自己写的层次遍历
     public int maxDepth(TreeNode root) {
         int depth=0;
         Queue<TreeNode> queue = new LinkedList();
@@ -35,7 +36,13 @@ public class Test1 {
             nodes[i]=node2;
         }
         TreeNode root=createBTree(tree1,nodes);
-        System.out.println("递归算法：");
+        System.out.println("层次遍历：");
+        LevelTraversal.levelOrderTraversal(root);
+        System.out.print("\n"+"计算二叉树的深度(使用非递归方法）：");
+        System.out.print(LevelTraversal.computeBTreeLevel(root));
+        System.out.print("\n"+"计算二叉树的深度(使用递归方法）：");
+        System.out.print(LevelTraversal.computeDepth_n(root));
+        System.out.println("\n"+"递归算法：");
         System.out.print("pre : ");
         Traversal.preOrder(root);
         System.out.print("\n"+"inOder: ");
@@ -49,6 +56,12 @@ public class Test1 {
         Traversal.inOrder_n(root);
         System.out.print("\n"+"Post ：");
         Traversal.postOrder_n(root,tree1.length);
+        //计算二叉树的镜像
+        System.out.print("\n"+"计算二叉树的镜像： ");
+        MirrorBinaryTree.mirrorTree(root);
+        System.out.print("\n"+"pre : ");
+        Traversal.preOrder(root);
+
     }
 
     /**
