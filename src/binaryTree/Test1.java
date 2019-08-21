@@ -1,5 +1,7 @@
 package binaryTree;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -7,6 +9,24 @@ import java.util.Queue;
  * 二叉树的前中后遍历，包含递归和非递归两种方法
  */
 public class Test1 {
+
+    public int maxProfit(int[] prices) {
+        int[] arr=new int[prices.length];
+        int min=65535;
+        for (int i = 0; i <prices.length ; i++) {
+            arr[i]=prices[i]-min;
+            if (prices[i]<min){
+                min=prices[i];
+            }
+        }
+        int max=0;
+        for (int i = 0; i <arr.length ; i++) {
+            if (max<arr[i])
+                max=arr[i];
+        }
+        return max;
+    }
+
     //我自己写的层次遍历
     public int maxDepth(TreeNode root) {
         int depth=0;
