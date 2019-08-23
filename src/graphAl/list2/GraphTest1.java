@@ -2,13 +2,15 @@ package graphAl.list2;
 
 import graphAl.list1.CreateGraph;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class GraphTest1 {
 
     /**
      *
-     * 根据顶点信息String 返回边的对象
+     * 根据顶点信息String 返回顶点的索引
      */
     public static int vtoe(Graph graph,String str){
         for (int i=0;i<graph.vertexNum;i++){
@@ -44,7 +46,6 @@ public class GraphTest1 {
             int v2=vtoe(graph,folV);
             if (v1==-1||v2==-1)
                 System.out.println("输入的顶点有误！ ");
-
             Edge edge1=new Edge();
             edge1.edgeName=v2;
             edge1.next=graph.vertexList.get(v1).firstEdge;
@@ -74,20 +75,40 @@ public class GraphTest1 {
         }
     }
 
+    /**
+     * 采用邻接表的广度优先遍历：
+     * @param graph
+     * @param v0
+     */
+    public static void BFS_Graph(Graph graph,String v0){
+        int u,w,v;
+        Edge edge;
+        Queue<Integer> queue=new LinkedList<Integer>();
+        boolean[] visited=new boolean[graph.vertexNum];
+        v=vtoe(graph,v0);//获取根节点的索引
+        queue.offer(v);
+        System.out.println(v0);
+        visited[v]=true;
+        while(!queue.isEmpty()){
+            u=queue.poll();
+            for (edge=graph.vertexList.get(u).firstEdge;edge!=null;edge=edge.next){
+                if (visited[edge.edgeName]==false){
+                    System.out.println(graph.vertexList.get(edge.edgeName).vertexName);
+                    visited[edge.edgeName]=true;
+                    queue.offer(edge.edgeName);
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         GraphTest1 graphTest1=new GraphTest1();
         Graph graph=new Graph();
         graphTest1.initialGraph(graph);
         graphTest1.outputGraph(graph);
+        System.out.println("BFS:");
+        BFS_Graph(graph,"c");
 
     }
-
-
-
-
-
-
-
-
 
 }

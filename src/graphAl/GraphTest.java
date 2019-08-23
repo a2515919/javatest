@@ -1,5 +1,9 @@
 package graphAl;
 
+import org.junit.Test;
+
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
 
 public class GraphTest {
@@ -18,7 +22,7 @@ public class GraphTest {
         System.out.println("输入各边的顶点及权值：");
         for (k=0;k<gm.EdgeNum;k++){
             System.out.println("第"+(k+1)+"条边");
-            System.out.println("变的起点为：");
+            System.out.println("边的起点为：");
             startV=scanner.next().charAt(0);
             System.out.println("边的终点为：");
             endV=scanner.next().charAt(0);
@@ -55,26 +59,61 @@ public class GraphTest {
             System.out.println();
         }
     }
+    //找到顶点V的对应下表：
+    public static int locateVertex(GraphMatrix graphMatrix,char v){
+        int i;
+        for(i=0;i<graphMatrix.VertexNum;i++){
+            if (graphMatrix.Vertex[i]==v)
+                return i;
+        }
+        return -1;
+    }
 
     public static void main(String[] args) {
         GraphMatrix gm=new GraphMatrix();
         gm.VertexNum=5;
         gm.EdgeNum=5;
         gm.GType=0;
+        clearGraph(gm);
         createGraph(gm);
         printGraph(gm);
+        BFS_Test2(gm,'c');
         clearGraph(gm);
         printGraph(gm);
     }
 
-
-
-
-
-
-
-
-
+    /**
+     * 图的广度优先遍历
+     * 从start节点开始
+     */
+    @Test
+    public static void BFS_Test2(GraphMatrix gm,char vStart){
+        int v,u,i;
+        boolean[] visited=new boolean[gm.VertexNum];
+        for (int j=0;j<gm.VertexNum;j++)visited[j]=false;
+        Queue<Integer> q=new LinkedList<Integer>();
+        v=locateVertex(gm,vStart);
+        if(v==-1){
+            System.out.println("找不到该节点：vStart");
+            return;
+        }
+        //for ( v = 0; v !=gm.Vertex[v] ; v++) ; //v是vStart在 节点数组里的位置
+        System.out.println(vStart);
+        //((LinkedList) q).push();
+        visited[v]=true;
+        q.offer(v);
+        while(!q.isEmpty()){
+            u=q.poll();//u是当前需要它的所有连接的节点下标
+            //v=locateVertex(gm,u);
+            for (i=0;i<gm.VertexNum;i++){
+                if (gm.EdgeWeight[u][i]<gm.MaxValue&&visited[i]==false){
+                    System.out.println(gm.Vertex[i]);
+                    visited[i]=true;
+                    q.offer(i);
+                }
+            }
+        }
+    }
 
 
 
